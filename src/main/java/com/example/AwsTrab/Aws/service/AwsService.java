@@ -21,12 +21,14 @@ public class AwsService {
     static {
         // Your accesskey and secretkey
         AWS_CREDENTIALS = new BasicAWSCredentials(
-                "AKIATQZVJF5HWFFAMXOR",
-                "I7GFMaF/E75dmMQTFUnm4ikiGqqdAx6G5kGUOrQV"
+                "AKIATQZVJF5H2KWW3XL5",
+                "XbOd7KjS4mUeQEdkMA+rg88nlK4zTzhZ/PUh8d50"
         );
     }
 
-
+   /* CreateKeyPairRequest createKeyPairRequest = new CreateKeyPairRequest()
+            .withKeyName("teste");
+    CreateKeyPairResult createKeyPairResult = ec2Client.createKeyPair(createKeyPairRequest);*/
 
     public void stopInstance(String id){
 
@@ -88,15 +90,13 @@ public class AwsService {
                 .withRegion(Regions.US_EAST_2)
                 .build();
 
-        CreateKeyPairRequest createKeyPairRequest = new CreateKeyPairRequest()
-                .withKeyName("teste");
-        CreateKeyPairResult createKeyPairResult = ec2Client.createKeyPair(createKeyPairRequest);
+
 
         RunInstancesRequest runInstancesRequest = new RunInstancesRequest().withImageId("ami-039589fd877979c04") // https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html | https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/usingsharedamis-finding.html
                 .withInstanceType("t2.micro") // https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html
                 .withMinCount(1)
-                .withMaxCount(1)
-                .withKeyName("teste"); // optional - if not present, can't connect to instance
+                .withMaxCount(1);
+               /* .withKeyName("teste");*/ // optional - if not present, can't connect to instance
 
         String yourInstanceId = ec2Client.runInstances(runInstancesRequest).getReservation().getInstances().get(0).getInstanceId();
 

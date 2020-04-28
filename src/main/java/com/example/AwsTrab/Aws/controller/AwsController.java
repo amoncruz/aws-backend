@@ -53,10 +53,10 @@ public class AwsController {
         return new ResponseEntity<String>("Instancia Inicializada com sucesso", HttpStatus.OK);
     }
 
-    @DeleteMapping("/terminate/{id}")
+    @PostMapping("/terminate/{id}")
     public ResponseEntity terminateInstance(@PathVariable("id") String id){
         awsService.terminateInstance(id);
-        return new ResponseEntity<String>("Instancia Criada com sucesso", HttpStatus.OK);
+        return new ResponseEntity<String>("Instancia Terminada com sucesso", HttpStatus.OK);
     }
 
 
